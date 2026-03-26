@@ -19,21 +19,5 @@
 # Modify hostname
 #sed -i 's/OpenWrt/P3TERX-Router/g' package/base-files/files/bin/config_generate
 
-# 添加组播防火墙规则
-cat >> package/network/config/firewall/files/firewall.config <<EOF
-config rule
-        option name 'Allow-UDP-igmpproxy'
-        option src 'wan'
-        option dest 'lan'
-        option dest_ip '224.0.0.0/4'
-        option proto 'udp'
-        option target 'ACCEPT'        
-        option family 'ipv4'
-
-config rule
-        option name 'Allow-UDP-udpxy'
-        option src 'wan'
-        option dest_ip '224.0.0.0/4'
-        option proto 'udp'
-        option target 'ACCEPT'
-EOF
+# ===================== 已删除所有组播防火墙规则 =====================
+# 你已关闭组播插件 + 使用纯 nftables 防火墙，无需保留旧防火墙规则
